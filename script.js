@@ -22,10 +22,10 @@ const loadCategory = () => {
 const showCategory = (categories) => {
   categories.forEach((cat) => {
     categoryContainer.innerHTML += `
-            <li id="${cat.id}" class="cursor-pointer py-2 hover:border-b-4 border-red-600">${cat.title}</li>
-        `;
+        <li id="${cat.id}" class="cursor-pointer py-2 hover:border-b-6 border-red-600">${cat.title}</li>
+      `;
     const firstLi = document.querySelector("#main");
-    firstLi.classList.add("border-b-4");
+    firstLi.classList.add("border-b-6");
   });
 };
 
@@ -71,11 +71,11 @@ const showNewsByCategory = (articles) => {
 categoryContainer.addEventListener("click", (e) => {
   const allLi = document.querySelectorAll("li");
   allLi.forEach((li) => {
-    li.classList.remove("border-b-4");
+    li.classList.remove("border-b-6");
   });
   if (e.target.localName === "li") {
     showLoading();
-    e.target.classList.add("border-b-4");
+    e.target.classList.add("border-b-6");
     loadNewsByCategory(e.target.id);
   }
 });
