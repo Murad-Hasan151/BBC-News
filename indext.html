@@ -4,8 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BBC News</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+           font-family: "Noto Serif Bengali", serif;
+        }
+    </style>
 </head>
 <body>
-    
+    <header >
+        <div class="bg-red-600 py-4">
+            <div class="max-w-6xl mx-auto invert">
+                <img src="./assets/logo.svg" alt="">
+            </div>
+        </div>
+        <nav class="my-4 shadow-sm ">
+            <ul id="category-container" class="max-w-6xl mx-auto text-lg flex gap-6 ">
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-4 gap-5 mb-10">
+        <section id="showNewsByCategory" class="grid grid-cols-3 col-span-3 gap-5">
+            
+        </section>
+
+        <section id="bookmark" class="border-1 border-gray-300 rounded-md">
+            <div class="bg-red-600 p-3 text-white font-medium text-lg rounded-md">Bookmark</div>
+            <div id="bookmark-container" class="mt-2">
+
+            </div>
+        </section>
+    </main>
+
+    <section>
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+        <dialog id="view_detail_modal" class="modal">
+            <div class="modal-box">
+                <div id="view-details">
+                    
+                </div>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+    </section>
+
+
+
+    <script src="./script.js"></script>
 </body>
 </html>
