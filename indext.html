@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BBC News</title>
+    <title>BBC News বাংলা</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,27 +16,30 @@
         }
     </style>
 </head>
-<body>
-    <header >
+<body class="reletive">
+    <header class="sticky -top-16">
         <div class="bg-red-600 py-4">
             <div class="max-w-6xl mx-auto invert">
                 <img src="./assets/logo.svg" alt="">
             </div>
         </div>
-        <nav class="my-4 shadow-sm ">
-            <ul id="category-container" class="max-w-6xl mx-auto text-lg flex gap-6 ">
+        <nav class="pt-2 shadow-sm bg-white">
+            <ul id="category-container" class="max-w-6xl mx-auto font-medium text-xl flex gap-6 ">
                 
             </ul>
         </nav>
     </header>
 
-    <main class="max-w-6xl mx-auto grid grid-cols-4 gap-5 mb-10">
+    <main class="max-w-6xl mx-auto grid grid-cols-4 gap-5 mt-5 mb-10">
         <section id="showNewsByCategory" class="grid grid-cols-3 col-span-3 gap-5">
             
         </section>
 
         <section id="bookmark" class="border-1 border-gray-300 rounded-md">
-            <div class="bg-red-600 p-3 text-white font-medium text-lg rounded-md">Bookmark</div>
+            <div class="bg-red-600 p-3 text-white font-medium text-lg rounded-md flex justify-between items-center">
+                <h2>Bookmark</h2>
+                <p id="bookmarkCount">0</p>
+            </div>
             <div id="bookmark-container" class="mt-2">
 
             </div>

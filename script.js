@@ -2,6 +2,7 @@ const categoryContainer = document.getElementById("category-container");
 const showNewsContainer = document.getElementById("showNewsByCategory");
 const bookmarkContainer = document.getElementById("bookmark-container");
 const viewDetailContainer = document.getElementById("view-details");
+const bookmarkCount = document.getElementById("bookmarkCount");
 
 let bookmarks = [];
 
@@ -21,7 +22,7 @@ const loadCategory = () => {
 const showCategory = (categories) => {
   categories.forEach((cat) => {
     categoryContainer.innerHTML += `
-            <li id="${cat.id}" class="cursor-pointer hover:border-b-4 border-red-600">${cat.title}</li>
+            <li id="${cat.id}" class="cursor-pointer py-2 hover:border-b-4 border-red-600">${cat.title}</li>
         `;
     const firstLi = document.querySelector("#main");
     firstLi.classList.add("border-b-4");
@@ -59,7 +60,7 @@ const showNewsByCategory = (articles) => {
                     }</p>
                 </div>
                 <div class="flex justify-between px-2">
-                    <button class="btn">Bookmark</button>
+                    <button class="btn text-red-500">Bookmark</button>
                     <button onclick="view_detail_modal.showModal()" class="btn">View Details</button>
                 </div>
             </div>
@@ -73,6 +74,7 @@ categoryContainer.addEventListener("click", (e) => {
     li.classList.remove("border-b-4");
   });
   if (e.target.localName === "li") {
+    showLoading();
     e.target.classList.add("border-b-4");
     loadNewsByCategory(e.target.id);
   }
@@ -83,7 +85,9 @@ showNewsContainer.addEventListener("click", (e) => {
     handleBookmark(e);
   }
   if(e.target.innerText === "View Details"){
-    handleViewDetails(e)
+    viewDetailContainer.innerHTML = "";
+    detailsLoading();
+    handleViewDetails(e);
   }
 });
 
@@ -107,11 +111,13 @@ const showBookmark = (bookmarks) => {
         bookmarkContainer.innerHTML += `
             <div class=" shadow-sm p-2 mt-2 rounded-md">
                 <h2 class="font-semibold">${bookmark.title}</h2>
+                <p></p>
                 <div class="flex justify-end"><button onclick="handleDeleteBookmark('${bookmark.id}')" class="btn btn-sm">Delete</button></div>           
             </div>
         `;
-    })
-}
+    });
+    bookmarkCount.innerText = bookmarks.length;
+};
 
 
 const handleDeleteBookmark = (bookmarkId) => {
@@ -136,11 +142,12 @@ const handleViewDetails = (e) => {
         })
 }
 
-const showDetails = (article) => {
+const showDetails = (article) => { 
     viewDetailContainer.innerHTML = `
-        <h2 class="font-semibold text-lg">${article.title}</h2>
-        <p>${article.timestamp}</p>
-        <img src="" alt="">
+        <h2 class="font-bold text-2xl">${article.title }</h2>
+        <p class="my-2 text-sm">${article.timestamp}</p>
+        <img src="${article.images[1].url}" alt="">
+        <p class="my-5 text-justify text-lg">${article.content.join(" ")}</p>
     `;
 }
 
@@ -155,6 +162,18 @@ const showEmptyMessage = () => {
     showNewsContainer.innerHTML = `
         <div class="text-center font-bold text-3xl col-span-3 text-gray-500 mt-5">No news found for this category!</div>
     `;
+}
+
+const showLoading = () => {
+  showNewsContainer.innerHTML = `
+      <p class="text-center font-bold text-3xl col-span-3 text-gray-500 mt-5"><span class="loading loading-spinner loading-xl"></span> Loading........</p>
+  `;
+}
+
+const detailsLoading = () => {
+  viewDetailContainer.innerHTML = `
+    <p class="text-center font-bold text-3xl col-span-3 text-gray-500 mt-5"><span class="loading loading-spinner loading-xl"></span> Loading........</p>
+  `;
 }
 
 
